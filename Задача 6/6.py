@@ -24,3 +24,7 @@ def main(psi):
             zeta += 6 * o + floor(delta / 5)
 
     return zeta
+
+
+x={-64, 65, 99, 36, -88, -21, -14, -78, -43, -2}
+print(main(x))
