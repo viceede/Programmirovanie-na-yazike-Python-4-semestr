@@ -1,14 +1,21 @@
 import math
 
 
-def main(psi):
-    O = {math.floor(psi_i / 9) + psi_i ** 3 for psi_i in psi if -73 <= psi_i <= 42}
+def calc(i):
+    answ = 0
+    for alph in i:
+        answ += math.ceil(alph / 7)
+    return answ
 
-    Delta = {nu + abs(nu) for nu in range(-100, 101) if nu >= -23 or nu <= -52}
 
-    zeta = len(O)
-    for o in O:
-        for delta in Delta:
-            zeta += 6 * o + math.floor(delta / 5)
+def main(input_set):
+    H = {a for a in input_set if (a <= 11) != (a > -69)}
+    psi = {4 * eta for eta in H if -93 <= eta < 85}
+    omega = {abs(a) - math.floor(a / 2) for a in input_set
+             if (a <= 57 or a > -86)}
+    i = {omega_lower ** 3 + abs(omega_lower) for omega_lower in omega
+         if not (-45 < omega_lower <= 52)}
 
-    return zeta
+    answ = len({(a, b) for a in psi for b in i}) - calc(i)
+
+    return answ
