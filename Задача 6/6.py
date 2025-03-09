@@ -3,6 +3,7 @@ from math import floor
 
 def main(psi):
     O = {floor(psi_i / 9) + psi_i ** 3 for psi_i in psi if -73 <= psi_i <= 42}
+    print("проход по O")
 
     Delta = {nu + abs(nu) for nu in range(-100, 101) if -52 <= nu <= -23}
 
