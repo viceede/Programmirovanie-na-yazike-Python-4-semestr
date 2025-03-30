@@ -11,14 +11,14 @@ s = [
     {2019, 'LUA', 1984},
     {2019, 'HLSL'},
     {1977}
- ]
+]
 
 
 def main(r):
-     s1 = set(r)
-     for i, v in enumerate(s):
-         if not (len(v - s1)):
-             return i
+    s1 = set(r)
+    for i, v in enumerate(s):
+        if not (len(v - s1)):
+            return i
 
 print(main(['HLSL', 2011, 2003, 'FORTH', 1977]))  # 11
 print(main(['HLSL', 2011, 2003, 'FORTH', 1978]))  # 1
