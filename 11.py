@@ -8,10 +8,12 @@ class StateMachine:
         self.vars = {}
         self.transitions = {
             'k5': {
-                'cue': lambda: ('k0', 'E3') if self.vars.get('t') == 1 else ('k5', 'E6')
+                'cue': lambda: ('k0', 'E3')
+                if self.vars.get('t') == 1 else ('k5', 'E6')
             },
             'k0': {
-                'make': lambda: ('k2', 'E1') if self.vars.get('r') == 1 else ('k7', 'E1')
+                'make': lambda: ('k2', 'E1')
+                if self.vars.get('r') == 1 else ('k7', 'E1')
             },
             'k2': {
                 'share': lambda: ('k5', 'E6')
@@ -28,7 +30,8 @@ class StateMachine:
                 'share': lambda: ('k4', 'E5')
             },
             'k4': {
-                'cue': lambda: ('k3', 'E7') if self.vars.get('j') == 0 else ('k5', 'E2')
+                'cue': lambda: ('k3', 'E7')
+                if self.vars.get('j') == 0 else ('k5', 'E2')
             },
             'k3': {}
         }
@@ -52,7 +55,8 @@ class StateMachine:
             if item in self.transitions.get(self.state, {}):
                 def transition_fn():
                     try:
-                        next_state, output = self.transitions[self.state][item]()
+                        next_state, output = \
+                            self.transitions[self.state][item]()
                         self.state = next_state
                         return output
                     except KeyError:
@@ -64,7 +68,6 @@ class StateMachine:
     def part_of_loop(self):
         visited = set()
         rec_stack = set()
-
         return self._dfs_loop(self.state, visited, rec_stack)
 
     def _dfs_loop(self, state, visited, rec_stack):
