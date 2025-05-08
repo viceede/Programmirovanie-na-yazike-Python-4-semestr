@@ -75,15 +75,19 @@ class StateMachine:
                 return True
             if state in visited:
                 return False
+
             visited.add(state)
             stack.add(state)
-            for method in self.transitions.get(state, {}):
+
+            for method, transition in self.transitions.get(state, {}).items():
                 try:
-                    next_state, _ = self.transitions[state][method]()
-                    if dfs(next_state):
-                        return True
+                    next_state, _ = transition()
                 except (StateMachineException, KeyError):
                     continue
+
+                if dfs(next_state):
+                    return True
+
             stack.remove(state)
             return False
 
