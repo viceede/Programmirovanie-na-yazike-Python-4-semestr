@@ -70,6 +70,16 @@ class StateMachine:
         visited = set()
         stack = set()
 
+        def get_next_states(state):
+            next_states = []
+            for method, transition in self.transitions.get(state, {}).items():
+                try:
+                    next_state, _ = transition()
+                    next_states.append(next_state)
+                except (StateMachineException, KeyError):
+                    continue
+            return next_states
+
         def dfs(state):
             if state in stack:
                 return True
@@ -79,12 +89,7 @@ class StateMachine:
             visited.add(state)
             stack.add(state)
 
-            for method, transition in self.transitions.get(state, {}).items():
-                try:
-                    next_state, _ = transition()
-                except (StateMachineException, KeyError):
-                    continue
-
+            for next_state in get_next_states(state):
                 if dfs(next_state):
                     return True
 
