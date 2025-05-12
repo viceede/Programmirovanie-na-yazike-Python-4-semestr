@@ -74,6 +74,25 @@ def main():
 
 def test():
     o = main()
+
+    # Тесты для set_var и vars
+    o.set_var('x', 10)
+    assert o.vars['x'] == 10
+
+    o.set_var('flag', True)
+    assert o.vars['flag'] is True
+
+    # Перезапись переменной
+    o.set_var('x', 20)
+    assert o.vars['x'] == 20
+
+    # Проверка других переменных
+    assert o.vars['flag'] is True
+
+    # Проверка отсутствия переменной
+    assert 'y' not in o.vars
+
+    # Оригинальные тесты автомата
     try:
         o.widen()
     except StateMachineException:
