@@ -67,7 +67,7 @@ class Mealy:
             raise StateMachineException('unknown')
 
     def part_of_loop(self):
-        # States that are part of loops: k0, k5, k0-k2-k7-k1-k6-k4-k3 (if they form loops)
+        # States that are part of loops: k0, k5, k0-k2-k7-k1-k6-k4-k3
         return self.state in {'k0', 'k5', 'k2', 'k7', 'k1', 'k6', 'k4', 'k3'}
 
     def has_max_in_edges(self):
@@ -156,19 +156,19 @@ def test():
     assert o.state == 'k2'
 
     # Test part_of_loop
-    assert o.part_of_loop() == True
+    assert o.part_of_loop()
     o.state = 'k3'
-    assert o.part_of_loop() == True
+    assert o.part_of_loop()
 
     # Test has_max_in_edges
     o.state = 'k0'
-    assert o.has_max_in_edges() == True
+    assert o.has_max_in_edges()
     o.state = 'k6'
-    assert o.has_max_in_edges() == True
+    assert o.has_max_in_edges()
     o.state = 'k2'
-    assert o.has_max_in_edges() == True
+    assert o.has_max_in_edges()
     o.state = 'k5'
-    assert o.has_max_in_edges() == False
+    assert not o.has_max_in_edges()
 
     # Test error handling
     try:
