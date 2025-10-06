@@ -1,2 +1,2 @@
 ## Программирование на языке Python 4-й семестр
-- Вариант 4 с kispython.ru
+- Вариант 4 с https://kispython.ru
